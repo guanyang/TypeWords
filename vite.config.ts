@@ -79,6 +79,9 @@ export default defineConfig(() => {
         ],
         build: {
           rollupOptions: {
+            input: {
+              app: 'app.html'  // 默认入口
+            },
             // 因为已经把包复制过来了，里面的axios实例用的项目的，所以这行代码可以不要了
             // external: isCdnBuild ? ['axios'] : [],// 使用全局的 axios。因为百度翻译库内部用了0.19版本的axios，会被打包到代码里面
             output: {

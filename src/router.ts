@@ -1,7 +1,7 @@
 import * as VueRouter from 'vue-router'
-import {RouteRecordRaw} from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 import WordsPage from "@/pages/word/WordsPage.vue";
-import PC from "@/pages/index.vue";
+import Layout from "@/pages/layout.vue";
 import ArticlesPage from "@/pages/article/ArticlesPage.vue";
 import PracticeArticles from "@/pages/article/PracticeArticles.vue";
 import DictDetail from "@/pages/word/DictDetail.vue";
@@ -17,7 +17,7 @@ import User from "@/pages/user/index.vue";
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: PC,
+    component: Layout,
     redirect: '/',
     children: [
       {path: '/', component: Home},
