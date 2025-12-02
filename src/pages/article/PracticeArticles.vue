@@ -360,6 +360,9 @@ function saveArticle(val: Article) {
   }
   setArticle(val)
   store.sbook.custom = true
+  if (!store.sbook.id.includes('_custom')) {
+    store.sbook.id += '_custom'
+  }
 }
 
 function edit(val: Article = articleData.article) {
