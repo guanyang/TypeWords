@@ -412,11 +412,11 @@ useEvents([
       <div class="flex gap-1 mt-30">
         <div class="phonetic"
              :class="!(!settingStore.dictation || showFullWord || showWordResult) && 'word-shadow'"
-             v-if="settingStore.soundType === 'us' && word.phonetic0">[{{ word.phonetic0 }}]
+             v-if="settingStore.soundType === 'uk' && word.phonetic0">[{{ word.phonetic0 }}]
         </div>
         <div class="phonetic"
              :class="((settingStore.dictation || [WordPracticeType.Spell,WordPracticeType.Listen,WordPracticeType.Dictation].includes(settingStore.wordPracticeType)) && !showFullWord && !showWordResult) && 'word-shadow'"
-             v-if="settingStore.soundType === 'uk' && word.phonetic1">[{{ word.phonetic1 }}]
+             v-if="settingStore.soundType === 'us' && word.phonetic1">[{{ word.phonetic1 }}]
         </div>
         <VolumeIcon
           :title="`发音(${settingStore.shortcutKeyMap[ShortcutKey.PlayWordPronunciation]})`"

@@ -11,7 +11,7 @@ import { defineAsyncComponent, inject, watch } from "vue";
 import isoWeek from 'dayjs/plugin/isoWeek'
 import { msToHourMinute } from "@/utils";
 import Progress from "@/components/base/Progress.vue";
-import ChannelIcons from "@/components/ChannelIcons.vue";
+import ChannelIcons from "@/components/ChannelIcons/ChannelIcons.vue";
 
 dayjs.extend(isoWeek)
 dayjs.extend(isBetween);

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {nextTick, onMounted, ref, watch} from "vue";
-import {useSettingStore} from "@/stores/setting.ts";
-import {getAudioFileUrl, usePlayAudio} from "@/hooks/sound.ts";
-import {getShortcutKey, useEventListener} from "@/hooks/event.ts";
+import { nextTick, onMounted, ref, watch } from "vue";
+import { useSettingStore } from "@/stores/setting.ts";
+import { getAudioFileUrl, usePlayAudio } from "@/hooks/sound.ts";
+import { getShortcutKey, useEventListener } from "@/hooks/event.ts";
 import {
   checkAndUpgradeSaveDict,
   checkAndUpgradeSaveSetting,
@@ -11,11 +11,11 @@ import {
   shakeCommonDict,
   sleep
 } from "@/utils";
-import {DefaultShortcutKeyMap, ShortcutKey, WordPracticeMode} from "@/types/types.ts";
+import { DefaultShortcutKeyMap, ShortcutKey, WordPracticeMode } from "@/types/types.ts";
 import BaseButton from "@/components/BaseButton.vue";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
-import {useBaseStore} from "@/stores/base.ts";
-import {saveAs} from "file-saver";
+import { useBaseStore } from "@/stores/base.ts";
+import { saveAs } from "file-saver";
 import {
   APP_NAME, APP_VERSION, EMAIL,
   EXPORT_DATA_KEY, GITHUB, Host, LIB_JS_URL,
@@ -27,7 +27,7 @@ import {
 import dayjs from "dayjs";
 import BasePage from "@/components/BasePage.vue";
 import Toast from '@/components/base/toast/Toast.ts'
-import {Option, Select} from "@/components/base/select";
+import { Option, Select } from "@/components/base/select";
 import Switch from "@/components/base/Switch.vue";
 import Slider from "@/components/base/Slider.vue";
 import RadioGroup from "@/components/base/radio/RadioGroup.vue";
@@ -36,18 +36,19 @@ import InputNumber from "@/components/base/InputNumber.vue";
 import PopConfirm from "@/components/PopConfirm.vue";
 import Textarea from "@/components/base/Textarea.vue";
 import SettingItem from "@/pages/setting/SettingItem.vue";
-import {get, set} from "idb-keyval";
-import {useRuntimeStore} from "@/stores/runtime.ts";
-import {useUserStore} from "@/stores/user.ts";
-import {useExport} from "@/hooks/export.ts";
+import { get, set } from "idb-keyval";
+import { useRuntimeStore } from "@/stores/runtime.ts";
+import { useUserStore } from "@/stores/user.ts";
+import { useExport } from "@/hooks/export.ts";
 import MigrateDialog from "@/components/MigrateDialog.vue";
 import Log from "@/pages/setting/Log.vue";
+import About from "@/components/About.vue";
 
 const emit = defineEmits<{
   toggleDisabledDialogEscKey: [val: boolean]
 }>()
 
-const tabIndex = $ref(3)
+const tabIndex = $ref(4)
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
 const store = useBaseStore()
@@ -107,7 +108,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     } else {
       // 忽略单独的修饰键
       if (shortcutKey === 'Ctrl+' || shortcutKey === 'Alt+' || shortcutKey === 'Shift+' ||
-        e.key === 'Control' || e.key === 'Alt' || e.key === 'Shift') {
+          e.key === 'Control' || e.key === 'Alt' || e.key === 'Shift') {
         return;
       }
 
@@ -179,7 +180,7 @@ function resetShortcutKeyMap() {
 
 let importLoading = $ref(false)
 
-const {loading: exportLoading, exportData} = useExport()
+const { loading: exportLoading, exportData } = useExport()
 
 function importJson(str: string, notice: boolean = true) {
   importLoading = true
@@ -271,7 +272,7 @@ async function importData(e) {
             if (!entry) continue;
             const blob = await entry.async("blob");
             const id = filename.replace(/^mp3\//, "").replace(/\.mp3$/, "");
-            records.push({id, file: blob});
+            records.push({ id, file: blob });
           }
         }
         await set(LOCAL_FILE_KEY, records);
@@ -310,14 +311,16 @@ function transferOk() {
       <div class="flex flex-1 overflow-hidden gap-4">
         <div class="left">
           <div class="tabs">
-            <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">
-              <IconFluentKeyboardLayoutFloat20Regular width="20"/>
-              <span>快捷键设置</span>
-            </div>
             <div class="tab" :class="tabIndex === 4 && 'active'" @click="tabIndex = 4">
               <IconFluentDatabasePerson20Regular width="20"/>
               <span>数据管理</span>
             </div>
+
+            <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">
+              <IconFluentKeyboardLayoutFloat20Regular width="20"/>
+              <span>快捷键设置</span>
+            </div>
+
             <div class="tab" :class="tabIndex === 5 && 'active'" @click="()=>{
             tabIndex = 5
             runtimeStore.isNew = false
@@ -349,7 +352,7 @@ function transferOk() {
                     <input ref="shortcutInput" :value="item[1]?item[1]:'未设置快捷键'" readonly type="text"
                            @blur="handleInputBlur">
                     <span @click.stop="editShortcutKey = ''">按键盘进行设置，<span
-                      class="text-red!">设置完成点击这里</span></span>
+                        class="text-red!">设置完成点击这里</span></span>
                   </div>
                   <div v-else>
                     <div v-if="item[1]">{{ item[1] }}</div>
@@ -368,19 +371,20 @@ function transferOk() {
 
           <div v-if="tabIndex === 4">
             <div>
-              目前用户的所有数据
-              <b class="text-red">仅保存在本地</b>。如果您需要在不同的设备、浏览器或者其他非官方部署上使用 {{ APP_NAME }}，
-              您需要手动进行数据同步和保存。
+              所有用户数据
+              <b class="text-red">保存在本地浏览器中</b>。如果您需要在不同的设备、浏览器上使用 {{ APP_NAME }}，
+              您需要手动进行数据导出和导入
             </div>
-            <BaseButton :loading="exportLoading" class="mt-3" @click="exportData()">导出数据</BaseButton>
+            <BaseButton :loading="exportLoading" size="large" class="mt-3" @click="exportData()">导出数据备份(ZIP)</BaseButton>
+            <div class="text-gray text-sm mt-2">💾 导出的ZIP文件包含所有学习数据，可在其他设备上导入恢复</div>
 
-            <div class="line my-3"></div>
+            <div class="line mt-15 mb-3"></div>
 
-            <div>请注意，导入数据后将<b class="text-red"> 完全覆盖 </b>当前所有数据，请谨慎操作。执行导入操作时，会先自动备份当前数据到您的电脑中，供您随时恢复
+            <div>请注意，导入数据将<b class="text-red"> 完全覆盖 </b>当前所有数据，请谨慎操作。执行导入操作时，会先自动备份当前数据到您的电脑中，供您随时恢复
             </div>
             <div class="flex gap-space mt-3">
               <div class="import hvr-grow">
-                <BaseButton :loading="importLoading">导入数据</BaseButton>
+                <BaseButton size="large" :loading="importLoading">导入数据恢复</BaseButton>
                 <input type="file"
                        accept="application/json,.zip,application/zip"
                        @change="importData">
@@ -401,16 +405,7 @@ function transferOk() {
           <Log v-if="tabIndex === 5"/>
 
           <div v-if="tabIndex === 6" class="center flex-col">
-            <h1>Type Words</h1>
-            <p class="w-100 text-xl">
-              感谢使用本项目！本项目是开源项目，如果觉得有帮助，请在 GitHub 点个 Star，您的支持是我持续改进的动力。
-            </p>
-            <p>
-              GitHub地址：<a :href="GITHUB" target="_blank">{{ GITHUB }}</a>
-            </p>
-            <p>
-              作者邮箱：<a :href="`mailto:${EMAIL}`">{{ EMAIL }}</a>
-            </p>
+            <About/>
             <div class="text-md color-gray mt-10">
               Build {{ gitLastCommitHash }}
             </div>
@@ -421,8 +416,8 @@ function transferOk() {
   </BasePage>
 
   <MigrateDialog
-    v-model="showTransfer"
-    @ok="transferOk"
+      v-model="showTransfer"
+      @ok="transferOk"
   />
 </template>
 

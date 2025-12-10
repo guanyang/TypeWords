@@ -7,6 +7,14 @@
     <div class="log-item">
       <div class="mb-2">
         <div>
+          <div>日期：2025/12/11</div>
+          <div>内容：修复音标显示错误问题，优化反馈页面</div>
+        </div>
+      </div>
+    </div>
+    <div class="log-item">
+      <div class="mb-2">
+        <div>
           <div>日期：2025/12/10</div>
           <div>内容：新增选项：复习比(单词练习时，复习词与新词的比例)</div>
         </div>

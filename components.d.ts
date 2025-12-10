@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    About: typeof import('./src/components/About.vue')['default']
     ArticleList: typeof import('./src/components/list/ArticleList.vue')['default']
     Audio: typeof import('./src/components/base/Audio.vue')['default']
     BackIcon: typeof import('./src/components/BackIcon.vue')['default']
@@ -18,7 +19,7 @@ declare module 'vue' {
     BasePage: typeof import('./src/components/BasePage.vue')['default']
     BaseTable: typeof import('./src/components/BaseTable.vue')['default']
     Book: typeof import('./src/components/Book.vue')['default']
-    ChannelIcons: typeof import('./src/components/ChannelIcons.vue')['default']
+    ChannelIcons: typeof import('./src/components/ChannelIcons/ChannelIcons.vue')['default']
     Checkbox: typeof import('./src/components/base/checkbox/Checkbox.vue')['default']
     Close: typeof import('./src/components/icon/Close.vue')['default']
     ConflictNotice: typeof import('./src/components/ConflictNotice.vue')['default']
@@ -30,6 +31,7 @@ declare module 'vue' {
     Empty: typeof import('./src/components/Empty.vue')['default']
     Form: typeof import('./src/components/base/form/Form.vue')['default']
     FormItem: typeof import('./src/components/base/form/FormItem.vue')['default']
+    Github: typeof import('./src/components/ChannelIcons/Github.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     IconBxVolume: typeof import('~icons/bx/volume')['default']
     IconBxVolumeFull: typeof import('~icons/bx/volume-full')['default']
@@ -143,6 +145,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('./src/components/base/select/Select.vue')['default']
     SettingDialog: typeof import('./src/components/SettingDialog.vue')['default']
+    ShareIcon: typeof import('./src/components/ChannelIcons/ShareIcon.vue')['default']
     Slide: typeof import('./src/components/Slide.vue')['default']
     SlideHorizontal: typeof import('./src/components/slide/SlideHorizontal.vue')['default']
     SlideItem: typeof import('./src/components/slide/SlideItem.vue')['default']
@@ -152,6 +155,7 @@ declare module 'vue' {
     Toast: typeof import('./src/components/base/toast/Toast.vue')['default']
     Tooltip: typeof import('./src/components/base/Tooltip.vue')['default']
     VolumeIcon: typeof import('./src/components/icon/VolumeIcon.vue')['default']
+    WeChat: typeof import('./src/components/ChannelIcons/WeChat.vue')['default']
     WordItem: typeof import('./src/components/WordItem.vue')['default']
     WordList: typeof import('./src/components/list/WordList.vue')['default']
   }

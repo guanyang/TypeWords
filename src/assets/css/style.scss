@@ -439,6 +439,10 @@ a {
 .center {
   @apply flex justify-center items-center;
 }
+.center-col {
+  @extend .center;
+  @apply flex-col;
+}
 
 .card {
   @apply rounded-xl p-4 mb-8 shadow-lg box-border relative;

@@ -45,7 +45,7 @@ function goHome() {
           <span v-if="settingStore.sideExpand">设置</span>
           <div class="red-point" :class="!settingStore.sideExpand && 'top-1 right-0'" v-if="runtimeStore.isNew"></div>
         </div>
-        <div class="row" @click="jump2Feedback">
+        <div class="row" @click="router.push('/feedback')">
           <IconFluentCommentEdit20Regular/>
           <span v-if="settingStore.sideExpand">反馈</span>
         </div>
