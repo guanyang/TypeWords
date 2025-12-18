@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useBaseStore } from "@/stores/base.ts";
-import { useRouter } from "vue-router";
+import {useBaseStore} from "@/stores/base.ts";
+import {useRouter} from "vue-router";
 import BaseIcon from "@/components/BaseIcon.vue";
 import {
   _getAccomplishDate,
-  _getDictDataByUrl, _getStudyProgress,
+  _getDictDataByUrl,
   _nextTick,
   isMobile,
   loadJsLib,
@@ -13,23 +13,23 @@ import {
   useNav
 } from "@/utils";
 import BasePage from "@/components/BasePage.vue";
-import { DictResource, WordPracticeMode } from "@/types/types.ts";
-import { watch } from "vue";
-import { getCurrentStudyWord } from "@/hooks/dict.ts";
-import { useRuntimeStore } from "@/stores/runtime.ts";
+import {DictResource, WordPracticeMode} from "@/types/types.ts";
+import {watch} from "vue";
+import {getCurrentStudyWord} from "@/hooks/dict.ts";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 import Book from "@/components/Book.vue";
 import PopConfirm from "@/components/PopConfirm.vue";
 import Progress from '@/components/base/Progress.vue';
 import Toast from '@/components/base/toast/Toast.ts';
 import BaseButton from "@/components/BaseButton.vue";
-import { getDefaultDict } from "@/types/func.ts";
+import {getDefaultDict} from "@/types/func.ts";
 import DeleteIcon from "@/components/icon/DeleteIcon.vue";
 import PracticeSettingDialog from "@/pages/word/components/PracticeSettingDialog.vue";
 import ChangeLastPracticeIndexDialog from "@/pages/word/components/ChangeLastPracticeIndexDialog.vue";
-import { useSettingStore } from "@/stores/setting.ts";
-import { useFetch } from "@vueuse/core";
-import { AppEnv, DICT_LIST, Host, LIB_JS_URL, PracticeSaveWordKey, TourConfig } from "@/config/env.ts";
-import { myDictList } from "@/apis";
+import {useSettingStore} from "@/stores/setting.ts";
+import {useFetch} from "@vueuse/core";
+import {AppEnv, DICT_LIST, Host, LIB_JS_URL, PracticeSaveWordKey, TourConfig} from "@/config/env.ts";
+import {myDictList} from "@/apis";
 import PracticeWordListDialog from "@/pages/word/components/PracticeWordListDialog.vue";
 import ShufflePracticeSettingDialog from "@/pages/word/components/ShufflePracticeSettingDialog.vue";
 
@@ -241,8 +241,6 @@ let isNewHost = $ref(window.location.host === Host)
 <template>
   <BasePage>
     <div class="mb-4" v-if="!isNewHost">
-      新域名已启用，后续请访问 <a href="https://typewords.cc/words?from_old_site=1">https://typewords.cc</a>。当前
-      2study.top 域名将在不久后停止使用
     </div>
 
     <div class="card flex flex-col md:flex-row gap-4">

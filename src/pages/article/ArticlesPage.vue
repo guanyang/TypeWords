@@ -1,35 +1,26 @@
 <script setup lang="ts">
-import { useBaseStore } from "@/stores/base.ts";
-import { useRouter } from "vue-router";
+import {useBaseStore} from "@/stores/base.ts";
+import {useRouter} from "vue-router";
 import BasePage from "@/components/BasePage.vue";
-import {
-  _getDictDataByUrl,
-  _nextTick,
-  isMobile,
-  loadJsLib,
-  msToHourMinute,
-  resourceWrap,
-  total,
-  useNav
-} from "@/utils";
-import { DictResource, DictType } from "@/types/types.ts";
-import { useRuntimeStore } from "@/stores/runtime.ts";
+import {_getDictDataByUrl, _nextTick, isMobile, loadJsLib, msToHourMinute, resourceWrap, total, useNav} from "@/utils";
+import {DictResource, DictType} from "@/types/types.ts";
+import {useRuntimeStore} from "@/stores/runtime.ts";
 import BaseIcon from "@/components/BaseIcon.vue";
 import Book from "@/components/Book.vue";
 import Progress from '@/components/base/Progress.vue';
 import Toast from '@/components/base/toast/Toast.ts'
 import BaseButton from "@/components/BaseButton.vue";
 import PopConfirm from "@/components/PopConfirm.vue";
-import { watch } from "vue";
-import { getDefaultDict } from "@/types/func.ts";
+import {watch} from "vue";
+import {getDefaultDict} from "@/types/func.ts";
 import DeleteIcon from "@/components/icon/DeleteIcon.vue";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import isoWeek from 'dayjs/plugin/isoWeek'
-import { useFetch } from "@vueuse/core";
-import { AppEnv, DICT_LIST, Host, LIB_JS_URL, PracticeSaveArticleKey, TourConfig } from "@/config/env.ts";
-import { myDictList } from "@/apis";
-import { useSettingStore } from "@/stores/setting.ts";
+import {useFetch} from "@vueuse/core";
+import {AppEnv, DICT_LIST, Host, LIB_JS_URL, PracticeSaveArticleKey, TourConfig} from "@/config/env.ts";
+import {myDictList} from "@/apis";
+import {useSettingStore} from "@/stores/setting.ts";
 
 dayjs.extend(isoWeek)
 dayjs.extend(isBetween);
@@ -221,8 +212,6 @@ let isNewHost = $ref(window.location.host === Host)
 <template>
   <BasePage>
     <div class="mb-4" v-if="!isNewHost">
-      新域名已启用，后续请访问 <a href="https://typewords.cc/words?from_old_site=1">https://typewords.cc</a>。当前
-      2study.top 域名将在不久后停止使用
     </div>
 
     <div class="card flex flex-col md:flex-row justify-between gap-space p-4 md:p-6">
